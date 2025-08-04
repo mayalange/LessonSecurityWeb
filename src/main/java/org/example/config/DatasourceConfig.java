@@ -12,7 +12,7 @@ public class DatasourceConfig {
     @Bean
     public DataSource getDataSource(){
         DriverManagerDataSource managerDataSource = new DriverManagerDataSource();
-        managerDataSource.setUrl("jdbc:postgresql://localhost:5432/security_db");
+        managerDataSource.setUrl("jdbc:postgresql://localhost:5432/lesson_users_db");
         managerDataSource.setUsername("admin");
         managerDataSource.setPassword("admin");
         managerDataSource.setDriverClassName("org.postgresql.Driver");

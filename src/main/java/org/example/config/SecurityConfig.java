@@ -1,10 +1,8 @@
 package org.example.config;
 
-import org.example.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,8 +22,9 @@ public class SecurityConfig extends AbstractSecurityWebApplicationInitializer {
         return httpSecurity.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry
                         -> authorizationManagerRequestMatcherRegistry
                         .requestMatchers("/users").hasAuthority("ADMIN") // Получение всех пользователей может выполнить лишь администратор
-                .requestMatchers("/users/*").hasAnyAuthority("ADMIN", "USER")
-                .anyRequest().authenticated())
+                        .requestMatchers("/users/*").hasAuthority("ADMIN") // Полная информация только для ADMIN
+                        .requestMatchers("/users/basic/*").hasAnyAuthority("ADMIN", "USER") // Базовая информация для ADMIN и USER
+                        .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .build();
@@ -40,5 +39,4 @@ public class SecurityConfig extends AbstractSecurityWebApplicationInitializer {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
     }
-
 }
