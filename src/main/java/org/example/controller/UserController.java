@@ -2,6 +2,7 @@ package org.example.controller;
 
 import org.example.dao.JdbcUserDao;
 import org.example.model.User;
+import org.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,9 @@ public class UserController {
 
     @Autowired
     private JdbcUserDao jdbcUserDao;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping
     public String getUsers(Model model) {
@@ -35,5 +39,11 @@ public class UserController {
     public String addUser(@ModelAttribute User user){
         jdbcUserDao.create(user);
         return "redirect:/users";
+    }
+
+    @GetMapping("/basic/{id}")
+    public String getBasicUserById(Model model, @PathVariable("id") Integer id) {
+        model.addAttribute("user", userService.getBasicUserById(id));
+        return "basic-user-details";
     }
 }

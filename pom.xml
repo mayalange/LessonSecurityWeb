@@ -107,11 +107,11 @@
                 <configuration>
                     <filesets>
                         <fileset>
-                            <directory>D:\Programs\apache-tomcat-11.0.5\webapps</directory>
+                            <directory>C:\Users\meri1\apache\apache-tomcat-11.0.8\webapps</directory>
                             <includes>:LessonSecurityWeb*</includes>
                         </fileset>
                         <fileset>
-                            <directory>D:\Programs\apache-tomcat-11.0.5\webapps\LessonSecurityWeb</directory>
+                            <directory>C:\Users\meri1\apache\apache-tomcat-11.0.8\webapps\LessonSecurityWeb</directory>
                             <includes>**</includes>
                         </fileset>
                     </filesets>
@@ -123,7 +123,7 @@
                 <version>3.4.0</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <outputDirectory>D:\Programs\apache-tomcat-11.0.5\webapps</outputDirectory>
+                    <outputDirectory>C:\Users\meri1\apache\apache-tomcat-11.0.8\webapps</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>
